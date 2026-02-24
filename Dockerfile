@@ -1,19 +1,16 @@
 FROM python:3.11-slim
-
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
+LABEL "language"="python"
+LABEL "framework"="gradio"
 
 WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir \
-    gradio==4.38.1 \
-    huggingface_hub==0.23.5 \
+    gradio>=4.50.0 \
     yt-dlp>=2025.0.0
 
 COPY . .
 
-EXPOSE 7860
+EXPOSE 8080
 
 CMD ["python", "app.py"]
