@@ -6,9 +6,10 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir \
-gradio>=4.50.0,<5.0.0  \
-yt-dlp>=2025.0.0  \
-huggingface-hub>=0.19.0,<0.21.0  
+gradio==4.38.1 \
+huggingface_hub==0.23.5 \
+yt-dlp>=2025.0.0 \
+requests>=2.28.0 \
 
 COPY . .
 
