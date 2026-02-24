@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# 強制安裝系統級 ffmpeg（Zeabur 容器最可靠方式）
 RUN apt-get update && \
     apt-get install -y ffmpeg && \
     rm -rf /var/lib/apt/lists/*
@@ -8,7 +7,9 @@ RUN apt-get update && \
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir \
+    gradio==4.38.1 \
+    yt-dlp>=2025.0.0
 
 COPY . .
 
